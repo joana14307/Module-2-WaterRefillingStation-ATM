@@ -22,20 +22,20 @@ contract Assessment {
     function addfunds(uint256 _amount) public payable {
         uint256 _previousBalance = balance;
 
-        // make sure this is the owner
+      
         require(msg.sender == owner, "You are not the owner of this account");
 
         // perform transaction
         balance += _amount;
 
-        // assert transaction completed successfully
+       
         assert(balance == _previousBalance + _amount);
 
         // emit the event
         emit Addfunds(_amount);
     }
 
-    // custom error
+   
     error InsufficientBalance(uint256 balance, uint256 purchaseAmount);
 
     function purchase(uint256 _purchaseAmount) public {
@@ -48,13 +48,13 @@ contract Assessment {
             });
         }
 
-        // purchase the given amount
+       
         balance -= _purchaseAmount;
 
         // assert the balance is correct
         assert(balance == (_previousBalance - _purchaseAmount));
 
-        // emit the event
+        
         emit Purchase(_purchaseAmount);
     }
 }
